@@ -1,4 +1,4 @@
-module github.com/Zozokasu/golang-brson
+module github.com/Zozokasu/brson
 
 go 1.21
 

@@ -1,4 +1,4 @@
-package golang_brson
+package brson
 
 import (
 	"fmt"
