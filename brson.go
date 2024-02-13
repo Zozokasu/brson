@@ -20,13 +20,21 @@ func DecodeBrson(r []byte) ([]byte, error) {
 	return io.ReadAll(reader)
 }
 
-func DecodeBrsonJson(r []byte) ([]byte, error) {
-	bs, err := DecodeBrson(r)
+func ReadBrson(r []byte) (interface{}, error) {
+	data, err := DecodeBrson(r)
 	if err != nil {
 		return nil, err
 	}
 	var val interface{}
-	err = bson.Unmarshal(bs, &val)
+	err = bson.Unmarshal(data, &val)
+	if err != nil {
+		return nil, err
+	}
+	return val, err
+}
+
+func DecodeBrsonJson(r []byte) ([]byte, error) {
+	val, err := ReadBrson(r)
 	if err != nil {
 		return nil, err
 	}
